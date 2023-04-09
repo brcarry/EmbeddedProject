@@ -1,0 +1,17 @@
+SpeechRecognition
+playsound
+openai
+baidu-aip
+requests
+pyaudio
+jieba
+torch
+soundfile
+bs4
+numpy
+scipy
+unidecode
+phonemizer
+pypinyin
+
+Cython
