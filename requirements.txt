@@ -1,4 +1,3 @@
-SpeechRecognition
 playsound
 openai
 baidu-aip
@@ -13,5 +12,6 @@ scipy
 unidecode
 phonemizer
 pypinyin
-
 Cython
+selenium
+pycryptodome

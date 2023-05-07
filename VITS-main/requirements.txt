@@ -1,0 +1,10 @@
+Cython
+librosa
+matplotlib
+numpy
+phonemizer
+pypinyin
+scipy
+soundfile
+torch
+Unidecode

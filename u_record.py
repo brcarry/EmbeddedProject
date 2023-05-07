@@ -18,10 +18,10 @@ def record_wav(filename="output.wav"):
     p = pyaudio.PyAudio()
 
     # 打开一个音频流
-    stream = p.open(format=FORMAT,
+    stream = p.open(input=True,
+                    format=FORMAT,
                     channels=CHANNELS,
                     rate=RATE,
-                    input=True,
                     frames_per_buffer=CHUNK)
 
     print("等待用户开始说话...")
@@ -30,13 +30,9 @@ def record_wav(filename="output.wav"):
     while True:
         data = stream.read(CHUNK)
 
-        max_value = 0
         data_int = struct.unpack(f'{CHUNK}h', data)
         max_value = max(data_int)
-        # print(max_value)
 
-        # if abs(max(data)) > THRESHOLD:
-        #     break
         if max_value > THRESHOLD:
             break
 
@@ -52,9 +48,8 @@ def record_wav(filename="output.wav"):
         data_int = struct.unpack(f'{CHUNK}h', data)
         max_value = max(data_int)
 
-        # silent_counter = silent_counter + 1 if abs(max(data)) < THRESHOLD else 0
         silent_counter = silent_counter + 1 if max_value < THRESHOLD else 0
-        if silent_counter > RATE // CHUNK * 3:
+        if silent_counter > 15:
             break
 
     print("录音结束！")
@@ -71,7 +66,6 @@ def record_wav(filename="output.wav"):
     stream.stop_stream()
     stream.close()
     p.terminate()
-
 
 
 if __name__ == "__main__":
@@ -91,13 +85,9 @@ if __name__ == "__main__":
     while True:
         data = stream.read(CHUNK)
 
-        max_value = 0
         data_int = struct.unpack(f'{CHUNK}h', data)
         max_value = max(data_int)
-        # print(max_value)
 
-        # if abs(max(data)) > THRESHOLD:
-        #     break
         if max_value > THRESHOLD:
             break
 
@@ -113,7 +103,6 @@ if __name__ == "__main__":
         data_int = struct.unpack(f'{CHUNK}h', data)
         max_value = max(data_int)
 
-        # silent_counter = silent_counter + 1 if abs(max(data)) < THRESHOLD else 0
         silent_counter = silent_counter + 1 if max_value < THRESHOLD else 0
         if silent_counter > RATE // CHUNK * 3:
             break
